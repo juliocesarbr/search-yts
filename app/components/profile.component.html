@@ -1,0 +1,53 @@
+<div class="row">
+	<div class="col-md-12">
+		<form class="well">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Put a name of a movie here..." [(ngModel)]="moviename" name="moviename" (keyup)="searchMovie()">
+			</div>
+		</form>	
+	</div>
+</div>
+
+<div *ngIf="movie">
+	<div *ngFor="let movie of movie.data.movies" class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">{{movie.title}}</h3>
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-4">
+					<a target="_blank" href="{{movie.url}}"><img src="{{movie.medium_cover_image}}"></a>
+				</div>
+				<div class="col-md-8">
+					<div class="row">
+						<div class="stats">
+							<strong>Year:</strong><span> {{movie.year}}</span>
+							<strong>Rating:</strong><span> {{movie.rating}}</span>
+							<strong>Genres:</strong> <span class="label label-default" *ngFor="let genre of movie.genres"> {{genre}}</span>
+						</div>
+					</div>
+					<div class="row">
+						<label>Synopsis</label>
+						<p>{{movie.synopsis}}</p>
+					</div>
+					<div class="row">
+						<label>Torrents</label>
+						
+					</div>
+					<div class="row">
+						<div *ngFor="let torrent of movie.torrents" class="col-md-4">
+							<div class="row">
+								<a href="{{torrent.url}}"><img src="download-icon.png"></a>	
+							</div>
+							<div class="row">
+								<span class="label label-primary">{{torrent.quality}}</span>	
+								<p>{{torrent.size}}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
